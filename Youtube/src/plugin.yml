@@ -1,0 +1,9 @@
+name: youtube
+version: 0.1
+main: me.gameplax.youtube.youtube
+author: gameplax
+description: youtube
+commands:
+     kit:
+          description: Kits!
+          usage: /kit
