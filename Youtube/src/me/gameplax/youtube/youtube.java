@@ -21,6 +21,7 @@ public class youtube extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(new Inventarevent(), this);
+		getServer().getPluginManager().registerEvents(new Eventsalle(), this);
 		System.out.println("Youtube Enable!");			
 	}
 	
@@ -61,5 +62,6 @@ public class youtube extends JavaPlugin {
 
 	return erfolg;
 	}
+	
 
 }
