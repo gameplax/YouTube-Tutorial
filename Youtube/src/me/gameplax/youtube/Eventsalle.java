@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class Eventsalle implements Listener {
-	
+
 	
 	@EventHandler
 	public void onPlayerDeathEvent(PlayerDeathEvent event){
@@ -25,6 +25,8 @@ public class Eventsalle implements Listener {
 		
 	}
 	
+	
+
 
 
 }

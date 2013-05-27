@@ -1,5 +1,10 @@
 package me.gameplax.youtube;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -12,6 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class youtube extends JavaPlugin {
 	private Inventory inv=null;
+
 	
 	@Override
 	public void onDisable() {
@@ -23,6 +29,10 @@ public class youtube extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new Inventarevent(), this);
 		getServer().getPluginManager().registerEvents(new Eventsalle(), this);
 		System.out.println("Youtube Enable!");			
+		
+		
+		//Bungee Cord
+		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 	}
 	
 	
@@ -59,6 +69,31 @@ public class youtube extends JavaPlugin {
 			}
 
 	 }
+	 
+	 if(cmd.getName().equalsIgnoreCase("lobby")){
+		 
+		 if(sender instanceof Player){
+			 Player pp = (Player) sender;
+			 ByteArrayOutputStream b = new ByteArrayOutputStream();
+			 DataOutputStream out = new DataOutputStream(b);
+			 try{
+				 out.writeUTF("Connect");
+				 out.writeUTF("lobby");
+			 }catch (IOException eee){
+				 
+			 }
+			 pp.sendPluginMessage(this, "BungeeCord", b.toByteArray());
+		 }
+		 
+		 
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 
 	return erfolg;
 	}
