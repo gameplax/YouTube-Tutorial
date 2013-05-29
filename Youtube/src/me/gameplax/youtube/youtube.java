@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import net.md_5.bungee.api.ChatColor;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -88,9 +90,18 @@ public class youtube extends JavaPlugin {
 		 
 	 }
 	 
-	 
-	 
-	 
+	 if(cmd.getName().equalsIgnoreCase("open")){
+		 if(args.length == 1){
+			 if(args[0].equalsIgnoreCase("ender")){
+				 p.openInventory(p.getEnderChest());
+			 }else if(args[0].equalsIgnoreCase("chant")){
+				 p.openEnchanting(null, true);
+			 }
+			 
+		 }else if(args.length == 0){
+			 p.sendMessage(ChatColor.YELLOW + "Benutz /open <ender/chant>");
+		 }
+	 }
 	 
 	 
 	 
