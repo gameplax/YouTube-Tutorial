@@ -7,3 +7,9 @@ commands:
      kit:
           description: Kits!
           usage: /kit
+     lobby:
+          description: Zum Lobby Server
+          usage: /Lobby
+     open:
+          description: Oeffnet Enderchest und Enchantment tabel
+          usage: /open <ender/chant>

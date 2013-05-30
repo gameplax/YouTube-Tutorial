@@ -19,7 +19,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class youtube extends JavaPlugin {
 	private Inventory inv=null;
-
 	
 	@Override
 	public void onDisable() {
