@@ -3,6 +3,7 @@ version: 0.1
 main: me.gameplax.youtube.youtube
 author: gameplax
 description: youtube
+depend: [Vault]
 commands:
      kit:
           description: Kits!

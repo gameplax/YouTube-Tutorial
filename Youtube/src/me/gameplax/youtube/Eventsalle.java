@@ -51,10 +51,10 @@ public class Eventsalle implements Listener {
             		World welt = p.getWorld();
             		
 
-           		 Location loc1 = new Location(welt, x, y, z);
-           		 Location loc2 = new Location(welt, x, y, z);
-           		 Location loc3 = new Location(welt, x, y, z);
-           		 Location loc4 = new Location(welt, x, y, z);
+           		 Location loc1 = new Location(welt, -156, 66, 441);
+           		 Location loc2 = new Location(welt, -167, 65, 447);
+           		 Location loc3 = new Location(welt, -177, 65, 458);
+           		 Location loc4 = new Location(welt, -186, 65, 443);
            		 
            		 
            		 

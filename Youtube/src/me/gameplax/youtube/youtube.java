@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import net.md_5.bungee.api.ChatColor;
+import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -14,11 +15,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
 public class youtube extends JavaPlugin {
 	private Inventory inv=null;
+	public static Economy economy = null;
+	public youtube plugin;
 	
 	@Override
 	public void onDisable() {
@@ -35,6 +39,16 @@ public class youtube extends JavaPlugin {
 		//Bungee Cord
 		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 	}
+	
+	private boolean setupEconomy()
+    {
+        RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
+        if (economyProvider != null) {
+            economy = economyProvider.getProvider();
+        }
+
+        return (economy != null);
+    }
 	
 	
 	@Override
@@ -74,6 +88,9 @@ public class youtube extends JavaPlugin {
 	 if(cmd.getName().equalsIgnoreCase("lobby")){
 		 
 		 if(sender instanceof Player){
+			 int price = 10;
+			 if(this.economy.has(p.getName(), price)){
+			 
 			 Player pp = (Player) sender;
 			 ByteArrayOutputStream b = new ByteArrayOutputStream();
 			 DataOutputStream out = new DataOutputStream(b);
@@ -84,6 +101,13 @@ public class youtube extends JavaPlugin {
 				 
 			 }
 			 pp.sendPluginMessage(this, "BungeeCord", b.toByteArray());
+			 
+			 this.economy.withdrawPlayer(p.getName(), price);
+			 
+			 }else {
+				 p.sendMessage(ChatColor.YELLOW + "Du hast nicht genug " + this.economy.currencyNamePlural());
+				 p.sendMessage(ChatColor.YELLOW + "Du brauchst " + price + this.economy.currencyNamePlural());
+			 }
 		 }
 		 
 		 
