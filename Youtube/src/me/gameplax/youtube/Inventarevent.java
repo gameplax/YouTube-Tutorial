@@ -1,10 +1,12 @@
 package me.gameplax.youtube;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class Inventarevent implements Listener {
@@ -14,6 +16,7 @@ public class Inventarevent implements Listener {
 	public void Inventory(InventoryClickEvent event){
 		Player p = (Player) event.getWhoClicked();
 		
+		event.setCancelled(true);
 		
 		if(event.getInventory().getName().equalsIgnoreCase("Kits")){
 			event.setCancelled(true);
@@ -45,8 +48,11 @@ public class Inventarevent implements Listener {
 	}
 	
 	
-	
-	
+	@EventHandler
+	public void onItemDorp(PlayerDropItemEvent event){
+		event.setCancelled(true);
+		
+	}
 
 
 	
