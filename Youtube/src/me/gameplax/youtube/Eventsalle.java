@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -14,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class Eventsalle implements Listener {
 
@@ -36,11 +38,13 @@ public class Eventsalle implements Listener {
 	
 	@EventHandler
 	public void onPLayInteract(PlayerInteractEvent e){
+		Player p = e.getPlayer();
+		
 		if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
         	Block i = e.getClickedBlock();
         	if(i.getState() instanceof Sign){
         		
-            Player p = e.getPlayer();
+            
             String playername = p.getPlayer().getName();
             	BlockState stateBlock = i.getState();
             	Sign sign = (Sign) stateBlock;
@@ -83,9 +87,27 @@ public class Eventsalle implements Listener {
            		 
             		
             	}
-            	
         	}
 		}
+		
+		ItemStack item =e.getItem();
+		if(e.getAction().equals(Action.RIGHT_CLICK_AIR)){
+			if(item.equals(Material.MUSHROOM_SOUP)){
+				if(p.getHealth() == 20){
+					p.getInventory().remove(new ItemStack(p.getItemInHand()));
+					p.getInventory().addItem(new ItemStack(Material.BOWL));
+					p.setFoodLevel(p.getFoodLevel() + 5);
+				}else{
+					p.getInventory().remove(new ItemStack(p.getItemInHand()));
+					p.getInventory().addItem(new ItemStack(Material.BOWL));
+					p.setHealth(p.getHealth() + 5);
+				}
+			}
+			
+		}
+
+
+		
 	}
 	
 	
