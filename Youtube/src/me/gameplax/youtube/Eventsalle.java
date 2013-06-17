@@ -90,21 +90,6 @@ public class Eventsalle implements Listener {
         	}
 		}
 		
-		ItemStack item =e.getItem();
-		if(e.getAction().equals(Action.RIGHT_CLICK_AIR)){
-			if(item.equals(Material.MUSHROOM_SOUP)){
-				if(p.getHealth() == 20){
-					p.getInventory().remove(new ItemStack(p.getItemInHand()));
-					p.getInventory().addItem(new ItemStack(Material.BOWL));
-					p.setFoodLevel(p.getFoodLevel() + 5);
-				}else{
-					p.getInventory().remove(new ItemStack(p.getItemInHand()));
-					p.getInventory().addItem(new ItemStack(Material.BOWL));
-					p.setHealth(p.getHealth() + 5);
-				}
-			}
-			
-		}
 
 
 		
