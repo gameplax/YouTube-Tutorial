@@ -8,6 +8,7 @@ import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -15,6 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -125,7 +127,24 @@ public class youtube extends JavaPlugin {
 			 p.sendMessage(ChatColor.YELLOW + "Benutz /open <ender/chant>");
 		 }
 	 }
-	 
+	 if(cmd.getName().equalsIgnoreCase("outfit")){
+		 if(args.length == 3){
+			 if(args[0].equalsIgnoreCase("leder")){
+				 if(args[1].equalsIgnoreCase("rot")){
+					 p.getInventory().setArmorContents(null);
+					 
+					 ItemStack item1 = new ItemStack(Material.LEATHER_HELMET);
+					 LeatherArmorMeta meta1 = (LeatherArmorMeta) item1.getItemMeta();
+					 meta1.setColor(Color.RED);
+					 item1.setItemMeta(meta1);
+					 ItemMeta imeta1 = item1.getItemMeta();
+					 p.getInventory().setHelmet(new ItemStack(item1));
+					 
+					 
+				 }
+			 }
+		 }
+	 }
 	 
 	 
 
