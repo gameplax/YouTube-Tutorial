@@ -24,6 +24,7 @@ public class Eventsalle implements Listener {
 	public void onPlayerDeathEvent(PlayerDeathEvent event){
 		
 		Player p = event.getEntity().getPlayer();
+		Player killer = event.getEntity().getKiller();
 		
 		event.setDeathMessage(null);
 		
@@ -32,6 +33,28 @@ public class Eventsalle implements Listener {
 		p.setFireTicks(0);
 		
 		p.teleport(new Location(Bukkit.getServer().getWorld("world"), -13, 93, 371));
+		
+		event.setDroppedExp(0);
+		event.getDrops().clear();
+		
+		if(killer.getInventory().contains(Material.GOLD_SWORD)){
+			killer.getInventory().removeItem(new ItemStack(Material.GOLD_SWORD));
+			killer.getInventory().addItem(new ItemStack(Material.WOOD_SWORD, 1));
+			
+			if(p.getInventory().contains(Material.GOLD_SWORD)){
+				p.getInventory().removeItem(new ItemStack(Material.GOLD_SWORD));
+				p.getInventory().addItem(new ItemStack(Material.GOLD_SWORD, 1));	
+			}else if(p.getInventory().contains(Material.WOOD_SWORD)){
+				p.getInventory().removeItem(new ItemStack(Material.WOOD_SWORD));
+				p.getInventory().addItem(new ItemStack(Material.GOLD_SWORD, 1));
+				
+			}
+		}
+		
+		
+		killer.setLevel(killer.getLevel() + 1);
+		p.setLevel(p.getLevel() - 1);
+		
 		
 	}
 	
